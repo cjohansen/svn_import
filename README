@@ -1,0 +1,31 @@
+SvnImport
+=========
+
+Imports a rails project into subversion and converts the current directory to
+a working copy of that project. SvnImport goes a little bit further than just
+adding everything; it ignores resources such as logs, tmp files and database.yml
+and environment.rb.
+
+For the database.yml and environment.rb files, SvnImport creates template files,
+and provides a task for copying them back after checkout. This allows each
+developer to have their own database settings and/or keep the password for the
+production database out of version control.
+
+
+Example
+=======
+
+$ rails myapp
+$ cd myapp
+[More initial setup]
+$ script/plugin install https://svn.cjohansen.no/rails/plugins/svn_import
+$ rake svn:import
+
+When checking out a project that was imported with svn_import you can do:
+
+$ svn co http://my.repo/myapp/trunk .
+$ rake svn:setup
+
+
+Copyright (c) 2008 Christian Johansen , released under the MIT license
+christian@cjohansen.no - http://www.cjohansen.no - http://en.cjohansen.no
